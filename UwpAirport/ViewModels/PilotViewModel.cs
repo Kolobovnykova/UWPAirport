@@ -9,28 +9,13 @@ namespace UwpAirport.ViewModels
     public class PilotViewModel : BaseViewModel
     {
         private PilotService service;
+        public Pilot SelectedItem { get; set; }
 
         public ObservableCollection<Pilot> Pilots { get; set; } = new ObservableCollection<Pilot>();
 
         public PilotViewModel()
         {
             service = new PilotService();
-        }
-
-        private Pilot selected;
-        public Pilot SelectedItem
-        {
-            get { return selected; }
-            set
-            {
-                selected = value;
-                if (selected != null)
-                {
-                    
-                }
-
-               // RaisePropertyChanged(() => SelectedPilot);
-            }
         }
 
         public async Task UpdateList()
@@ -65,7 +50,7 @@ namespace UwpAirport.ViewModels
 
         public bool Valid(Pilot pilot)
         {
-            if (pilot.FirstName == "" || pilot.LastName == "" 
+            if (pilot.FirstName == "" || pilot.LastName == ""
                 || pilot.Experience < 0 || pilot.DateOfBirth > DateTime.Now)
             {
                 return false;
