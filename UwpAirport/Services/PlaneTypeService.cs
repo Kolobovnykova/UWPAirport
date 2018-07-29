@@ -7,34 +7,34 @@ using UwpAirport.Models;
 
 namespace UwpAirport.Services
 {
-    public class PilotService
+    public class PlaneTypeService
     {
-        private string endpoint = Constants.Localhost + "pilots";
+        private string endpoint = Constants.Localhost + "planetypes";
         HttpClient _httpclient = new HttpClient();
 
-        public async Task<ObservableCollection<Pilot>> GetAll()
+        public async Task<ObservableCollection<PlaneType>> GetAll()
         {
             string result = await _httpclient.GetStringAsync(endpoint);
-            return JsonConvert.DeserializeObject<ObservableCollection<Pilot>>(result);
+            return JsonConvert.DeserializeObject<ObservableCollection<PlaneType>>(result);
         }
 
-        public async Task<Pilot> Get(int id)
+        public async Task<PlaneType> Get(int id)
         {
             string result = await _httpclient.GetStringAsync($"{endpoint}/{id}");
-            return JsonConvert.DeserializeObject<Pilot>(result);
+            return JsonConvert.DeserializeObject<PlaneType>(result);
         }
 
-        public async Task Create(Pilot pilot)
+        public async Task Create(PlaneType planeType)
         {
             var stringContent =
-                new StringContent(JsonConvert.SerializeObject(pilot), Encoding.UTF8, "application/json");
+                new StringContent(JsonConvert.SerializeObject(planeType), Encoding.UTF8, "application/json");
             await _httpclient.PostAsync(endpoint, stringContent).ConfigureAwait(false);
         }
 
-        public async Task Update(int id, Pilot pilot)
+        public async Task Update(int id, PlaneType planeType)
         {
             var stringContent =
-                new StringContent(JsonConvert.SerializeObject(pilot), Encoding.UTF8, "application/json");
+                new StringContent(JsonConvert.SerializeObject(planeType), Encoding.UTF8, "application/json");
             await _httpclient.PutAsync($"{endpoint}/{id}", stringContent).ConfigureAwait(false);
         }
 

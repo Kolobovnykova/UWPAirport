@@ -7,34 +7,34 @@ using UwpAirport.Models;
 
 namespace UwpAirport.Services
 {
-    public class PilotService
+    public class PlaneService
     {
-        private string endpoint = Constants.Localhost + "pilots";
+        private string endpoint = Constants.Localhost + "planes";
         HttpClient _httpclient = new HttpClient();
 
-        public async Task<ObservableCollection<Pilot>> GetAll()
+        public async Task<ObservableCollection<Plane>> GetAll()
         {
             string result = await _httpclient.GetStringAsync(endpoint);
-            return JsonConvert.DeserializeObject<ObservableCollection<Pilot>>(result);
+            return JsonConvert.DeserializeObject<ObservableCollection<Plane>>(result);
         }
 
-        public async Task<Pilot> Get(int id)
+        public async Task<Plane> Get(int id)
         {
             string result = await _httpclient.GetStringAsync($"{endpoint}/{id}");
-            return JsonConvert.DeserializeObject<Pilot>(result);
+            return JsonConvert.DeserializeObject<Plane>(result);
         }
 
-        public async Task Create(Pilot pilot)
+        public async Task Create(Plane plane)
         {
             var stringContent =
-                new StringContent(JsonConvert.SerializeObject(pilot), Encoding.UTF8, "application/json");
+                new StringContent(JsonConvert.SerializeObject(plane), Encoding.UTF8, "application/json");
             await _httpclient.PostAsync(endpoint, stringContent).ConfigureAwait(false);
         }
 
-        public async Task Update(int id, Pilot pilot)
+        public async Task Update(int id, Plane plane)
         {
             var stringContent =
-                new StringContent(JsonConvert.SerializeObject(pilot), Encoding.UTF8, "application/json");
+                new StringContent(JsonConvert.SerializeObject(plane), Encoding.UTF8, "application/json");
             await _httpclient.PutAsync($"{endpoint}/{id}", stringContent).ConfigureAwait(false);
         }
 
