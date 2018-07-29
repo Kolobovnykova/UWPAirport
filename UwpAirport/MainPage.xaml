@@ -9,82 +9,33 @@
 	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Margin = "20">
+        <TextBlock Grid.ColumnSpan="2" Text = "Airport" FontSize = "36" 
+                     HorizontalAlignment = "Center"
+                     Margin = "0 30 0 0"/>
 
-            <StackPanel Orientation = "Horizontal">
+        <StackPanel Grid.Column="0" Margin = "10 0 20 0"
+                      VerticalAlignment = "Center"
+                    HorizontalAlignment="Right">
 
-                <ToggleButton x:Name = "HamburgerButton" FontFamily = "Segoe MDL2 Assets"
-               Content = "" Checked = "HandleCheck" Unchecked = "HandleUnchecked" 
-               HorizontalAlignment = "Center"/>
+            <Button Content = "Pilots" Click = "Pilots_Click" Width="160" FontSize="20" Padding="15" Background="AliceBlue" BorderBrush="LightBlue"/>
+            <Button Content = "Stewardesses" Margin="0 20 0 0" Click = "Stewardesses_Click" Width="160" FontSize="20" Padding="15" Background="AliceBlue" BorderBrush="LightBlue"/>
+            <Button Content = "Crews" Margin="0 20 0 0" Click = "Stewardesses_Click" Width="160" FontSize="20" Padding="15" Background="AliceBlue" BorderBrush="LightBlue"/>
+            <Button Content = "Tickets" Margin="0 20 0 0" Click = "Stewardesses_Click" Width="160" FontSize="20" Padding="15" Background="AliceBlue" BorderBrush="LightBlue"/>
 
-                <AppBarButton Icon = "Like" />
-                <AppBarButton Icon = "Dislike" />
-                <AppBarSeparator/>
-                <AppBarButton Icon = "Accept" />
-                <AppBarButton Icon = "Add" />
+        </StackPanel>
 
-            </StackPanel>
-
-            <SplitView x:Name = "splitView" DisplayMode = "Inline" 
-            OpenPaneLength = "296">
-
-                <SplitView.Pane>
-                    <StackPanel>
-                        <TextBlock Text = "SplitView Pane" FontSize = "36" 
-                     VerticalAlignment = "Center" HorizontalAlignment = "Center" 
-                     Margin = "10"/>
-
-                        <Button Content = "Options" Margin = "10">
-
-                            <Button.Flyout>
-                                <MenuFlyout>
-                                    <MenuFlyoutItem Text = "Reset"/>
-                                    <MenuFlyoutSeparator/>
-                                    <MenuFlyoutItem Text = "Repeat"/>
-                                    <MenuFlyoutItem Text = "Shuffle"/>
-                                </MenuFlyout>
-                            </Button.Flyout>
-
-                        </Button>
-
-                    </StackPanel>
-                </SplitView.Pane>
-
-                <StackPanel>
-
-                    <TextBlock Text = "SplitView Content" FontSize = "36" 
-                  VerticalAlignment = "Center" HorizontalAlignment = "Center" 
-                  Margin = "10"/>
-
-                    <Border BorderThickness = "3" BorderBrush = "Red" Margin = "5">
-                        <StackPanel Orientation = "Horizontal">
-                            <TextBlock Text = "Hyperlink example" Margin = "5"/>
-                            <HyperlinkButton Content = "www.microsoft.com" 
-                        NavigateUri = "http://www.microsoft.com"/>
-                        </StackPanel>
-                    </Border>
-
-                    <RelativePanel BorderBrush = "Red" BorderThickness = "2"  
-                  CornerRadius = "10" Padding = "12" Margin = "5">
-
-                        <!--<TextBlock x:Name = "txt" Text = "Relative Panel example" 
-                     RelativePanel.AlignLeftWithPanel = "True" 
-                     Margin = "5,0,0,0"/>
-
-                        <TextBox x:Name = "textBox1" RelativePanel.RightOf = "btn" 
-                     Margin = "5,0,0,0"/>
-
-                        <Button x:Name = "btn" Content = "Name"  
-                     RelativePanel.RightOf = "txt" Margin = "5,0,0,0"/>-->
-                        <Button Content = "Pilots" Click = "Pilots_Click" Width="108"/>
-                        <Button Content = "Stewardesses" Margin="0 50 0 0" Click = "Stewardesses_Click" Width="108"/>
-
-                    </RelativePanel>
-
-                </StackPanel>
-
-            </SplitView>
+        <StackPanel Grid.Column="1" Margin = "20"
+                      VerticalAlignment = "Center"
+                    HorizontalAlignment="Left">
+            <Button Content = "Planes" Click = "Pilots_Click" Width="160" FontSize="20" Padding="15" Background="AliceBlue" BorderBrush="LightBlue"/>
+            <Button Content = "PlaneTypes" Margin="0 20 0 0" Click = "Stewardesses_Click" Width="160" FontSize="20" Padding="15" Background="AliceBlue" BorderBrush="LightBlue"/>
+            <Button Content = "Flights" Margin="0 20 0 0" Click = "Stewardesses_Click" Width="160" FontSize="20" Padding="15" Background="AliceBlue" BorderBrush="LightBlue"/>
+            <Button Content = "Departures" Margin="0 20 0 0" Click = "Stewardesses_Click" Width="160" FontSize="20" Padding="15" Background="AliceBlue" BorderBrush="LightBlue"/>
 
         </StackPanel>
 

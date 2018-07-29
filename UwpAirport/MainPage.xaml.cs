@@ -16,7 +16,6 @@ namespace UwpAirport
             this.InitializeComponent();
         }
 
-
         private void Pilots_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(PilotListView));
@@ -26,14 +25,5 @@ namespace UwpAirport
         {
             this.Frame.Navigate(typeof(AcademyView));
         }
-
-        private void HandleCheck(object sender, RoutedEventArgs e) { 
-            splitView.IsPaneOpen = true; 
-        }
-		
-        private void HandleUnchecked(object sender, RoutedEventArgs e) {
-            splitView.IsPaneOpen = false; 
-        }
-      
     }
 }

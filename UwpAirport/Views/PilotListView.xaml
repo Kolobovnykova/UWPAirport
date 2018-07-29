@@ -28,22 +28,22 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Content="Pilots" Click="GoToPilots" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Background="AliceBlue"/>
-            <Button Content="Stewardesses" Click="GoToStewardesses" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Background="AliceBlue"/>
-            <Button Content="Crews" Click="GoToStewardesses" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Background="AliceBlue"/>
-            <Button Content="Planes" Click="GoToPlanes" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="3" Background="AliceBlue"/>
-            <Button Content="PlaneTypes" Click="GoToPlanetypes" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4" Background="AliceBlue"/>
-            <Button Content="Flights" Click="GoToFlights" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="5" Background="AliceBlue"/>
-            <Button Content="Departures" Click="GoToStewardesses" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="6" Background="AliceBlue"/>
-            <Button Content="Tickets" Click="GoToTickets" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="7" Background="AliceBlue"/>
+            <Button Content="Pilots" Click="Pilots_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Background="AliceBlue"/>
+            <Button Content="Stewardesses" Click="Stewardesses_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Background="AliceBlue" MinWidth="108"/>
+            <Button Content="Crews" Click="Stewardesses_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Background="AliceBlue"/>
+            <Button Content="Planes" Click="Planes_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="3" Background="AliceBlue"/>
+            <Button Content="PlaneTypes" Click="PlaneTypes_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4" Background="AliceBlue"/>
+            <Button Content="Flights" Click="Flight_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="5" Background="AliceBlue"/>
+            <Button Content="Departures" Click="Stewardesses_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="6" Background="AliceBlue"/>
+            <Button Content="Tickets" Click="Tickets_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="7" Background="AliceBlue"/>
 
         </Grid>
 
         <Grid Grid.Row="1" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Grid.Row="0">
                 <StackPanel>
                     <Grid>
@@ -52,10 +52,10 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Button Content="Back" Click="Back_Click" Margin="10,10,10,10" Background="AliceBlue" BorderBrush="LightBlue" Grid.Column="0" Width="100"/>
-                        <Button Content="Create new" Click="ShowForm_Click" Grid.Column="1" Margin="10,10,10,10" Background="AliceBlue" BorderBrush="LightBlue" HorizontalAlignment="Right" Width="100"/>
+                        <Button Content="Create new" Click="AddNew_Click" Grid.Column="1" Margin="10,10,10,10" Background="AliceBlue" BorderBrush="LightBlue" HorizontalAlignment="Right" Width="100"/>
                     </Grid>
                 </StackPanel>
-                <ListView SelectionChanged="ShowUpdateForm_Click" SelectedItem="{Binding SelectedPilot, Mode=TwoWay}" Margin="0,50,0,0" x:Name="Pilots" ItemsSource="{x:Bind ViewModel.Pilots, Mode=TwoWay}">
+                <ListView SelectionChanged="Update_Click" SelectedItem="{Binding SelectedPilot, Mode=TwoWay}" Margin="0,50,0,0" x:Name="Pilots" ItemsSource="{x:Bind ViewModel.Pilots, Mode=TwoWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="m:Pilot" >
                             <Grid Margin="16">
@@ -130,10 +130,10 @@
 
             <StackPanel Grid.Column="1" Visibility="Collapsed" x:Name="Form" HorizontalAlignment="Center">
                 <TextBlock Text="New Pilot" x:Name="FormTitle" Margin="0 20 0 0" FontSize="25"/>
-                <TextBox x:Name="formName" Header= "First Name:" Margin="0,20,0,0" MaxLength="50" FontSize="18" HorizontalAlignment="Left" Width="300"/>
-                <TextBox x:Name="formSurname" Header="Last Name:" Margin="0,20,0,0" MaxLength="50" FontSize="18" HorizontalAlignment="Left" Width="300" />
+                <TextBox x:Name="firstName" Header= "First Name:" Margin="0,20,0,0" MaxLength="50" FontSize="18" HorizontalAlignment="Left" Width="300"/>
+                <TextBox x:Name="lastName" Header="Last Name:" Margin="0,20,0,0" MaxLength="50" FontSize="18" HorizontalAlignment="Left" Width="300" />
                 <DatePicker x:Name="birthDatePicker" Header="Date of Birth:" HorizontalAlignment="Left" Margin="0 20 0 0" FontSize="18"/>
-                <TextBox InputScope="Number" x:Name="formExperience" Header="Experience" Margin="0,24,0,0"  HorizontalAlignment="Left" FontSize="18" Width="100" />
+                <TextBox InputScope="Number" x:Name="experience" Header="Experience" Margin="0,24,0,0"  HorizontalAlignment="Left" FontSize="18" Width="100" />
                 <TextBlock Text="Wrong input" Foreground="Red" x:Name="WrongInput" Visibility="Collapsed" Margin="0 20 0 0"/>
                 <StackPanel Orientation="Horizontal">
 
