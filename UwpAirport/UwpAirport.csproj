@@ -110,7 +110,7 @@
     <Compile Include="Views\AcademyView.xaml.cs">
       <DependentUpon>AcademyView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pilot\PilotListView.xaml.cs">
+    <Compile Include="Views\PilotListView.xaml.cs">
       <DependentUpon>PilotListView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -143,7 +143,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Pilot\PilotListView.xaml">
+    <Page Include="Views\PilotListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

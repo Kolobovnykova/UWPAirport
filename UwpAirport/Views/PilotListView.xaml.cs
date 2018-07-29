@@ -6,7 +6,7 @@ using System;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace UwpAirport.Views.Pilot
+namespace UwpAirport.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -35,43 +35,37 @@ namespace UwpAirport.Views.Pilot
         {
             Detail.Visibility = Visibility.Collapsed;
             await ViewModel.RemoveSelected();
-            await ViewModel.UpdateList();
         }
 
         public async void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            //bool isNumber = int.TryParse(formExperience.Text, out int n);
-            //if (isNumber)
-            //{
-            //    Pilot f = new Pilot()
-            //    {
-            //        Name = formName.Text,
-            //        Surname = formSurname.Text,
-            //        Experience = Int32.Parse(formExperience.Text)
-            //    };
-            //    if (PilotService.Validate(f))
-            //    {
-            //        if (FormTitle.Text == "New Pilot")
-            //        {
-            //            if (!await PilotService.Add(f))
-            //            {
-            //                WrongInput.Visibility = Visibility.Visible;
-            //            }
-            //            WrongInput.Visibility = Visibility.Collapsed;
-            //            return;
-            //        }
-            //        if (FormTitle.Text == "Edit Pilot")
-            //        {
-            //            if (!await PilotService.Update(f))
-            //            {
-            //                WrongInput.Visibility = Visibility.Visible;
-            //            }
-            //            WrongInput.Visibility = Visibility.Collapsed;
-            //            return;
-            //        }
-            //    }
-            //}
-            //WrongInput.Visibility = Visibility.Visible;
+            bool isNumber = int.TryParse(formExperience.Text, out int n);
+            if (isNumber)
+            {
+                Pilot pilot = new Pilot()
+                {
+                    FirstName = formName.Text,
+                    LastName = formSurname.Text,
+                    DateOfBirth = birthDatePicker.Date.DateTime,
+                    Experience = Int32.Parse(formExperience.Text)
+                };
+                if (ViewModel.Valid(pilot))
+                {
+                    if (FormTitle.Text == "New Pilot")
+                    {
+                        await ViewModel.Create(pilot);
+                        WrongInput.Visibility = Visibility.Collapsed;
+                        return;
+                    }
+                    if (FormTitle.Text == "Edit Pilot")
+                    {
+                        await ViewModel.UpdateSelected(pilot);
+                        WrongInput.Visibility = Visibility.Collapsed;
+                        return;
+                    }
+                }
+            }
+            WrongInput.Visibility = Visibility.Visible;
         }
 
         public void ShowUpdateForm_Click(object sender, RoutedEventArgs e)

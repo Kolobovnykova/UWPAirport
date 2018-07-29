@@ -43,10 +43,34 @@ namespace UwpAirport.ViewModels
             }
         }
 
+        public async Task Create(Pilot pilot)
+        {
+            await service.Create(pilot);
+            await UpdateList();
+        }
+
+        public async Task UpdateSelected(Pilot pilot)
+        {
+            await service.Update(SelectedItem.Id, pilot);
+            SelectedItem = null;
+            await UpdateList();
+        }
+
         public async Task RemoveSelected()
         {
             await service.Delete(SelectedItem.Id);
             SelectedItem = null;
+            await UpdateList();
+        }
+
+        public bool Valid(Pilot pilot)
+        {
+            if (pilot.FirstName == "" || pilot.LastName == "" 
+                || pilot.Experience < 0 || pilot.DateOfBirth > DateTime.Now)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

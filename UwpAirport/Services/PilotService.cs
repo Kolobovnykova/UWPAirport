@@ -30,10 +30,10 @@ namespace UwpAirport.Services
             await _httpclient.PostAsync(endpoint, stringContent).ConfigureAwait(false);
         }
 
-        public async Task Update(Pilot Pilot)
+        public async Task Update(int id, Pilot Pilot)
         {
             var stringContent = new StringContent(JsonConvert.SerializeObject(Pilot), Encoding.UTF8, "application/json");
-            await _httpclient.PutAsync($"{endpoint}/{Pilot.Id}", stringContent).ConfigureAwait(false);
+            await _httpclient.PutAsync($"{endpoint}/{id}", stringContent).ConfigureAwait(false);
         }
 
         public async Task Delete(int id)
