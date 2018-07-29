@@ -15,20 +15,22 @@ namespace UwpAirport.ViewModels
         public PilotViewModel()
         {
             service = new PilotService();
-         //   LoadItems();
-            //Pilots = new ObservableCollection<Pilot>
-            //{
-            //    new Pilot { Id = 1, FirstName ="first name", LastName="last name", DateOfBirth = new DateTime(1990, 1,1), Experience = 3},
-            //    new Pilot { Id = 2, FirstName ="first name", LastName="last name", DateOfBirth = new DateTime(1990, 1,1), Experience = 3},
-            //    new Pilot { Id = 3, FirstName ="first name", LastName="last name", DateOfBirth = new DateTime(1990, 1,1), Experience = 3},
-            //    new Pilot { Id = 4, FirstName ="first name", LastName="last name", DateOfBirth = new DateTime(1990, 1,1), Experience = 3},
-            //    new Pilot { Id = 5, FirstName ="first name", LastName="last name", DateOfBirth = new DateTime(1990, 1,1), Experience = 3}
-            //};
         }
 
-        private async void LoadItems()
+        private Pilot selected;
+        public Pilot SelectedItem
         {
-            Pilots = await service.GetAll();
+            get { return selected; }
+            set
+            {
+                selected = value;
+                if (selected != null)
+                {
+                    
+                }
+
+               // RaisePropertyChanged(() => SelectedPilot);
+            }
         }
 
         public async Task UpdateList()
@@ -39,6 +41,12 @@ namespace UwpAirport.ViewModels
             {
                 Pilots.Add(item);
             }
+        }
+
+        public async Task RemoveSelected()
+        {
+            await service.Delete(SelectedItem.Id);
+            SelectedItem = null;
         }
     }
 }

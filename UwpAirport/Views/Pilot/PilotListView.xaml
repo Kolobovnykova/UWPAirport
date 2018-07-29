@@ -13,92 +13,144 @@
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Background="AliceBlue">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <Button Content = "Back to Main" Margin="20" Click = "Back_Click"/>
+            <Button Content="Pilots" Click="ShowPilots" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Background="AliceBlue"/>
+            <Button Content="Stewardesses" Click="ShowStewardesses" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Background="AliceBlue"/>
+            <Button Content="Crews" Click="ShowStewardesses" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Background="AliceBlue"/>
+            <Button Content="Planes" Click="ShowPlanes" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="3" Background="AliceBlue"/>
+            <Button Content="PlaneTypes" Click="ShowPlaneTypes" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4" Background="AliceBlue"/>
+            <Button Content="Flights" Click="ShowFlights" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="5" Background="AliceBlue"/>
+            <Button Content="Departures" Click="ShowStewardesses" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="6" Background="AliceBlue"/>
+            <Button Content="Tickets" Click="ShowTickets" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="7" Background="AliceBlue"/>
 
-        <SplitView x:Name = "splitView" DisplayMode = "Inline" 
-            OpenPaneLength = "296">
-            <SplitView.Pane>
+        </Grid>
+
+        <Grid Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
                 <StackPanel>
-                    <TextBlock Text = "SplitView Pane" FontSize = "36" 
-                     VerticalAlignment = "Center" HorizontalAlignment = "Center" 
-                     Margin = "10"/>
-
-                    <Button Content = "Options" Margin = "10">
-
-                        <Button.Flyout>
-                            <MenuFlyout>
-                                <MenuFlyoutItem Text = "Reset"/>
-                                <MenuFlyoutSeparator/>
-                                <MenuFlyoutItem Text = "Repeat"/>
-                                <MenuFlyoutItem Text = "Shuffle"/>
-                            </MenuFlyout>
-                        </Button.Flyout>
-
-                    </Button>
-
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Back" Click="Back_Click" Margin="10,10,10,10" Background="AliceBlue" BorderBrush="LightBlue" Grid.Column="0" Width="100"/>
+                        <Button Content="Create new" Click="ShowForm_Click" Grid.Column="1" Margin="10,10,10,10" Background="AliceBlue" BorderBrush="LightBlue" HorizontalAlignment="Right" Width="100"/>
+                    </Grid>
                 </StackPanel>
-            </SplitView.Pane>
 
-
-            <RelativePanel BorderBrush = "Red" BorderThickness = "2"  
-                  CornerRadius = "10" Padding = "12" Margin = "5">
-                
-                <ListView Grid.ColumnSpan="3" Grid.Row="1" ItemsSource="{x:Bind ViewModel.Pilots}">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="m:Pilot">
-                        <Grid Margin="16">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="40"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="24"/>
-                                <RowDefinition Height="24"/>
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Text="{x:Bind FirstName}"
+                <ListView SelectionChanged="SelectItem_Click" SelectedItem="{Binding SelectedPilot, Mode=TwoWay}" Margin="0,50,0,0" x:Name="Pilots" ItemsSource="{x:Bind ViewModel.Pilots, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="m:Pilot" >
+                            <Grid Margin="16">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="24"/>
+                                    <RowDefinition Height="24"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="{x:Bind Id}"
+                                           Foreground='Black'
+                                           FontSize="20"
+                                           Padding="5"
+                                           Grid.Column="0"
+                                           Grid.RowSpan="3"/>
+                                <TextBlock Text="{x:Bind FirstName}"
                                    Foreground="Black"
                                    FontSize="16"
                                    Padding="20,0,0,0"
                                    Grid.Column="1"
-                                   Grid.Row="0"/>
+                                   Grid.Row="0"
+                                   Margin ="0 0 29 0"
+                                   />
+                                <TextBlock Text="{x:Bind LastName}"
+                                   Foreground="Black"
+                                   FontSize="16"
+                                   Padding="20,0,0,20"
+                                   Grid.Column="1"
+                                   Grid.Row="0"
+                                   Margin="100, 0, 0, 0"/>
 
-                            <StackPanel Orientation="Horizontal"
+                                <StackPanel Orientation="Horizontal"
                                     Grid.Column="1"
                                     Grid.Row="1">
-                                <TextBlock Text="{x:Bind DateOfBirth, Converter={StaticResource DateToStringConverter}}"
-                                   Foreground="#444444"
-                                   FontSize="13"
-                                   Padding="20,0,0,0"/>
-                                <TextBlock Text="From:"
+                                    <TextBlock Text="Date of Birth:"
                                    Foreground="#888888"
                                    FontSize="13"
                                    Padding="20,0,0,0"/>
-                                <TextBlock Text="{x:Bind Experience}"
+                                    <TextBlock Text="{x:Bind DateOfBirth, Converter={StaticResource DateToStringConverter}}"
+                                   Foreground="#444444"
+                                   FontSize="13"
+                                   Padding="20,0,0,0"/>
+                                    <TextBlock Text="Experience:"
+                                   Foreground="#888888"
+                                   FontSize="13"
+                                   Padding="20,0,0,0"/>
+                                    <TextBlock Text="{x:Bind Experience}"
                                    Foreground="#444444"
                                    FontSize="13"
                                    Padding="6,0,0,0"/>
-                                <ToggleButton x:Name = "HamburgerButton" FontFamily = "Segoe MDL2 Assets"
-                                   Content = "" Checked = "HandleCheck" Unchecked = "HandleUnchecked" 
-                                   HorizontalAlignment = "Center"/>
-                            </StackPanel>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-                </RelativePanel>
-        </SplitView>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            
+            <StackPanel Grid.Column="1" Visibility="Collapsed" x:Name="Form" HorizontalAlignment="Center">
+                <TextBlock Text="New Pilot" x:Name="FormTitle"/>
+                <TextBox x:Name="formSurname" Header= "Surname" Margin="0,24,0,0" MaxLength="25" HorizontalAlignment="Left"/>
+                <TextBox x:Name="formName" Header="Name" Margin="0,24,0,0"  HorizontalAlignment="Left" />
+                <DatePicker x:Name="birthDatePicker" Header="Date of birth"/>
+                <TextBox InputScope="Number"  x:Name="formExperience" Header="Experience" Margin="0,24,0,0"  HorizontalAlignment="Left" />
+                <TextBlock Text="Wrong input" Foreground="Red" x:Name="WrongInput" Visibility="Collapsed"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="save" Content="Save" Margin="0,24" Click="SaveButton_Click"/>
+                </StackPanel>
+            </StackPanel>
+
+            <Grid Grid.Column="1" Visibility="Collapsed" x:Name="Detail">
+
+                <StackPanel Orientation="Vertical"
+                                    Margin="0, 20, 0, 0">
+                    <TextBlock Text="Id:"/>
+                    <TextBlock FontSize ="25" Text="{Binding ElementName=Pilots, Path=SelectedItem.Id, Mode=TwoWay}"/>
+                    <TextBlock Text="First name:"/>
+                    <TextBlock FontSize ="25" Text="{Binding ElementName=Pilots, Path=SelectedItem.FirstName, Mode=TwoWay}" />
+                    <TextBlock Text="Last name:"/>
+                    <TextBlock FontSize ="25" Text="{Binding ElementName=Pilots, Path=SelectedItem.LastName, Mode=TwoWay}"/>
+                    <TextBlock Text="Experience:"/>
+                    <TextBlock FontSize ="25" Text="{Binding ElementName=Pilots, Path=SelectedItem.DateOfBirth, Mode=TwoWay}"/>
+                    <TextBlock Text="Experience:"/>
+                    <TextBlock FontSize ="25" Text="{Binding ElementName=Pilots, Path=SelectedItem.Experience, Mode=TwoWay}"/>
+                    <Button Content="Delete" Click="Delete_Click" Margin="0,20,0,20"/>
+                    <Button Content="Update" Click="ShowUpdateForm_Click"/>
+
+                </StackPanel>
+
+            </Grid>
+
+        </Grid>
+
     </Grid>
-
-
 
 </Page>

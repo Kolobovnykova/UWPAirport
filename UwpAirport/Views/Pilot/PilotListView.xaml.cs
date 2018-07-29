@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using UwpAirport.ViewModels;
+using UwpAirport.Models;
+using System;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -41,14 +31,111 @@ namespace UwpAirport.Views.Pilot
             await ViewModel.UpdateList();
         }
 
-        private void HandleCheck(object sender, RoutedEventArgs e)
+        public async void Delete_Click(object sender, RoutedEventArgs e)
         {
-            splitView.IsPaneOpen = true;
+            Detail.Visibility = Visibility.Collapsed;
+            await ViewModel.RemoveSelected();
+            await ViewModel.UpdateList();
         }
 
-        private void HandleUnchecked(object sender, RoutedEventArgs e)
+        public async void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            splitView.IsPaneOpen = false;
+            //bool isNumber = int.TryParse(formExperience.Text, out int n);
+            //if (isNumber)
+            //{
+            //    Pilot f = new Pilot()
+            //    {
+            //        Name = formName.Text,
+            //        Surname = formSurname.Text,
+            //        Experience = Int32.Parse(formExperience.Text)
+            //    };
+            //    if (PilotService.Validate(f))
+            //    {
+            //        if (FormTitle.Text == "New Pilot")
+            //        {
+            //            if (!await PilotService.Add(f))
+            //            {
+            //                WrongInput.Visibility = Visibility.Visible;
+            //            }
+            //            WrongInput.Visibility = Visibility.Collapsed;
+            //            return;
+            //        }
+            //        if (FormTitle.Text == "Edit Pilot")
+            //        {
+            //            if (!await PilotService.Update(f))
+            //            {
+            //                WrongInput.Visibility = Visibility.Visible;
+            //            }
+            //            WrongInput.Visibility = Visibility.Collapsed;
+            //            return;
+            //        }
+            //    }
+            //}
+            //WrongInput.Visibility = Visibility.Visible;
+        }
+
+        public void ShowUpdateForm_Click(object sender, RoutedEventArgs e)
+        {
+            WrongInput.Visibility = Visibility.Collapsed;
+            Form.Visibility = Visibility.Visible;
+            FormTitle.Text = "Edit Pilot";
+            formName.Text = ViewModel.SelectedItem.FirstName;
+            birthDatePicker.Date = new DateTimeOffset(ViewModel.SelectedItem.DateOfBirth);
+            formSurname.Text = ViewModel.SelectedItem.LastName.ToString();
+            formExperience.Text = ViewModel.SelectedItem.Experience.ToString();
+            save.Content = "Update";
+            Detail.Visibility = Visibility.Collapsed;
+        }
+
+        public void ShowForm_Click(object sender, RoutedEventArgs e)
+        {
+            WrongInput.Visibility = Visibility.Collapsed;
+            Form.Visibility = Visibility.Visible;
+            FormTitle.Text = "New Pilot";
+            formSurname.Text = "";
+            DatePicker birthDatePicker = new DatePicker();
+            birthDatePicker.Header = "Date of birth";
+            formName.Text = "";
+            save.Content = "Create";
+            Detail.Visibility = Visibility.Collapsed;
+        }
+
+        public void SelectItem_Click(object sender, SelectionChangedEventArgs e)
+        {
+            var item = ((sender as ListView).SelectedItem as Models.Pilot);
+            ViewModel.SelectedItem = item;
+
+            Form.Visibility = Visibility.Collapsed;
+            Detail.Visibility = Visibility.Visible;
+        }
+
+        private void ShowFlights(object sender, RoutedEventArgs e)
+        {
+            //   Frame.Navigate(typeof(FlightLogic));
+        }
+        private void ShowPilots(object sender, RoutedEventArgs e)
+        {
+            //  Frame.Navigate(typeof(PilotLogic));
+        }
+
+        private void ShowPlanes(object sender, RoutedEventArgs e)
+        {
+            // Frame.Navigate(typeof(PlaneLogic));
+        }
+
+        private void ShowPlaneTypes(object sender, RoutedEventArgs e)
+        {
+            // Frame.Navigate(typeof(PlaneTypeLogic));
+        }
+
+        private void ShowStewardesses(object sender, RoutedEventArgs e)
+        {
+            // Frame.Navigate(typeof(StewardessLogic));
+        }
+
+        private void ShowTickets(object sender, RoutedEventArgs e)
+        {
+            //  Frame.Navigate(typeof(TicketLogic));
         }
     }
 }
