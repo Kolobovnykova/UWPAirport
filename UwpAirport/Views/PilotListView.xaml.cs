@@ -33,7 +33,7 @@ namespace UwpAirport.Views
 
         public async void Delete_Click(object sender, RoutedEventArgs e)
         {
-            Detail.Visibility = Visibility.Collapsed;
+            Form.Visibility = Visibility.Collapsed;
             await ViewModel.RemoveSelected();
         }
 
@@ -46,18 +46,19 @@ namespace UwpAirport.Views
                 {
                     FirstName = formName.Text,
                     LastName = formSurname.Text,
-                    DateOfBirth = birthDatePicker.Date.DateTime,
+                    DateOfBirth = birthDatePicker.Date.Date,
                     Experience = Int32.Parse(formExperience.Text)
                 };
                 if (ViewModel.Valid(pilot))
                 {
-                    if (FormTitle.Text == "New Pilot")
+                    if ((string)Save.Content == "Create")
                     {
                         await ViewModel.Create(pilot);
                         WrongInput.Visibility = Visibility.Collapsed;
+                        Form.Visibility = Visibility.Collapsed;
                         return;
                     }
-                    if (FormTitle.Text == "Edit Pilot")
+                    else
                     {
                         await ViewModel.UpdateSelected(pilot);
                         WrongInput.Visibility = Visibility.Collapsed;
@@ -68,19 +69,6 @@ namespace UwpAirport.Views
             WrongInput.Visibility = Visibility.Visible;
         }
 
-        public void ShowUpdateForm_Click(object sender, RoutedEventArgs e)
-        {
-            WrongInput.Visibility = Visibility.Collapsed;
-            Form.Visibility = Visibility.Visible;
-            FormTitle.Text = "Edit Pilot";
-            formName.Text = ViewModel.SelectedItem.FirstName;
-            birthDatePicker.Date = new DateTimeOffset(ViewModel.SelectedItem.DateOfBirth);
-            formSurname.Text = ViewModel.SelectedItem.LastName.ToString();
-            formExperience.Text = ViewModel.SelectedItem.Experience.ToString();
-            save.Content = "Update";
-            Detail.Visibility = Visibility.Collapsed;
-        }
-
         public void ShowForm_Click(object sender, RoutedEventArgs e)
         {
             WrongInput.Visibility = Visibility.Collapsed;
@@ -88,48 +76,64 @@ namespace UwpAirport.Views
             FormTitle.Text = "New Pilot";
             formSurname.Text = "";
             DatePicker birthDatePicker = new DatePicker();
+            birthDatePicker.Date = new DateTimeOffset(DateTime.Now);
             birthDatePicker.Header = "Date of birth";
             formName.Text = "";
-            save.Content = "Create";
-            Detail.Visibility = Visibility.Collapsed;
+            formExperience.Text = "";
+            Save.Content = "Create";
+            Delete.Visibility = Visibility.Collapsed;
         }
 
-        public void SelectItem_Click(object sender, SelectionChangedEventArgs e)
+        private void ShowUpdateForm_Click(object sender, SelectionChangedEventArgs e)
         {
             var item = ((sender as ListView).SelectedItem as Models.Pilot);
+
+            if (item == null)
+            {
+                return;
+            }
             ViewModel.SelectedItem = item;
 
-            Form.Visibility = Visibility.Collapsed;
-            Detail.Visibility = Visibility.Visible;
+            WrongInput.Visibility = Visibility.Collapsed;
+            Form.Visibility = Visibility.Visible;
+            FormTitle.Text = "Details:";
+            formName.Text = ViewModel.SelectedItem.FirstName;
+            birthDatePicker.Date = new DateTimeOffset(ViewModel.SelectedItem.DateOfBirth);
+            formSurname.Text = ViewModel.SelectedItem.LastName.ToString();
+            formExperience.Text = ViewModel.SelectedItem.Experience.ToString();
+            Save.Content = "Update";
+            Delete.Visibility = Visibility.Visible;
         }
 
-        private void ShowFlights(object sender, RoutedEventArgs e)
+
+        private void GoToFlights(object sender, RoutedEventArgs e)
         {
             //   Frame.Navigate(typeof(FlightLogic));
         }
-        private void ShowPilots(object sender, RoutedEventArgs e)
+        private void GoToPilots(object sender, RoutedEventArgs e)
         {
             //  Frame.Navigate(typeof(PilotLogic));
         }
 
-        private void ShowPlanes(object sender, RoutedEventArgs e)
+        private void GoToPlanes(object sender, RoutedEventArgs e)
         {
             // Frame.Navigate(typeof(PlaneLogic));
         }
 
-        private void ShowPlaneTypes(object sender, RoutedEventArgs e)
+        private void GoToPlanetypes(object sender, RoutedEventArgs e)
         {
             // Frame.Navigate(typeof(PlaneTypeLogic));
         }
 
-        private void ShowStewardesses(object sender, RoutedEventArgs e)
+        private void GoToStewardesses(object sender, RoutedEventArgs e)
         {
             // Frame.Navigate(typeof(StewardessLogic));
         }
 
-        private void ShowTickets(object sender, RoutedEventArgs e)
+        private void GoToTickets(object sender, RoutedEventArgs e)
         {
             //  Frame.Navigate(typeof(TicketLogic));
         }
+
     }
 }
