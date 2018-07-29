@@ -23,7 +23,7 @@ namespace UwpAirport
 
         private void Stewardesses_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(PilotListView));
+            this.Frame.Navigate(typeof(StewardessListView));
         }
     }
 }

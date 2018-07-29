@@ -1,8 +1,8 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using UwpAirport.ViewModels;
 using UwpAirport.Models;
-using System;
+using UwpAirport.ViewModels;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -11,15 +11,16 @@ namespace UwpAirport.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class PilotListView : Page
+    public sealed partial class StewardessListView : Page
     {
-        public PilotListView()
+        public StewardessListView()
         {
             this.InitializeComponent();
-            ViewModel = new PilotViewModel();
+
+            ViewModel = new StewardessViewModel();
         }
 
-        public PilotViewModel ViewModel { get; set; }
+        public StewardessViewModel ViewModel { get; set; }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
@@ -39,27 +40,27 @@ namespace UwpAirport.Views
 
         public async void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            bool isNumber = int.TryParse(experience.Text, out int n);
+            bool isNumber = int.TryParse(crewId.Text, out int n);
             if (isNumber)
             {
-                Pilot pilot = new Pilot()
+                Stewardess stewardess = new Stewardess
                 {
                     FirstName = firstName.Text,
                     LastName = lastName.Text,
                     DateOfBirth = birthDatePicker.Date.Date,
-                    Experience = n
+                    CrewId = n
                 };
-                if (ViewModel.Valid(pilot))
+                if (ViewModel.Valid(stewardess))
                 {
                     if ((string) Save.Content == "Create")
                     {
-                        await ViewModel.Create(pilot);
+                        await ViewModel.Create(stewardess);
                         WrongInput.Visibility = Visibility.Collapsed;
                         Form.Visibility = Visibility.Collapsed;
                         return;
                     }
 
-                    await ViewModel.UpdateSelected(pilot);
+                    await ViewModel.UpdateSelected(stewardess);
                     WrongInput.Visibility = Visibility.Collapsed;
                     return;
                 }
@@ -80,14 +81,14 @@ namespace UwpAirport.Views
                 Header = "Date of birth"
             };
             firstName.Text = "";
-            experience.Text = "";
+            crewId.Text = "";
             Save.Content = "Create";
             Delete.Visibility = Visibility.Collapsed;
         }
 
         private void Update_Click(object sender, SelectionChangedEventArgs e)
         {
-            var item = (sender as ListView)?.SelectedItem as Pilot;
+            var item = (sender as ListView)?.SelectedItem as Stewardess;
 
             if (item == null)
             {
@@ -102,7 +103,7 @@ namespace UwpAirport.Views
             firstName.Text = ViewModel.SelectedItem.FirstName;
             birthDatePicker.Date = new DateTimeOffset(ViewModel.SelectedItem.DateOfBirth);
             lastName.Text = ViewModel.SelectedItem.LastName;
-            experience.Text = ViewModel.SelectedItem.Experience.ToString();
+            crewId.Text = ViewModel.SelectedItem.CrewId.ToString();
             Save.Content = "Update";
             Delete.Visibility = Visibility.Visible;
         }

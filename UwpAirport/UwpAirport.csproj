@@ -119,8 +119,12 @@
     <Compile Include="Services\TicketService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\PilotViewModel.cs" />
+    <Compile Include="ViewModels\StewardessViewModel.cs" />
     <Compile Include="Views\PilotListView.xaml.cs">
       <DependentUpon>PilotListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StewardessListView.xaml.cs">
+      <DependentUpon>StewardessListView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +153,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\PilotListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StewardessListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

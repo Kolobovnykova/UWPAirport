@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="UwpAirport.Views.PilotListView"
+    x:Class="UwpAirport.Views.StewardessListView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converter="using:UwpAirport.Converters" 
@@ -40,10 +40,10 @@
         </Grid>
 
         <Grid Grid.Row="1" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Grid.Row="0">
                 <StackPanel>
                     <Grid>
@@ -55,9 +55,9 @@
                         <Button Content="Create new" Click="AddNew_Click" Grid.Column="1" Margin="10,10,10,10" Background="AliceBlue" BorderBrush="LightBlue" HorizontalAlignment="Right" Width="100"/>
                     </Grid>
                 </StackPanel>
-                <ListView SelectionChanged="Update_Click" Margin="0,50,0,0" x:Name="Pilots" ItemsSource="{x:Bind ViewModel.Pilots, Mode=TwoWay}">
+                <ListView SelectionChanged="Update_Click" Margin="0,50,0,0" x:Name="Stewardesses" ItemsSource="{x:Bind ViewModel.Stewardesses, Mode=TwoWay}">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="m:Pilot" >
+                        <DataTemplate x:DataType="m:Stewardess" >
                             <Grid Margin="16">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" MinWidth="40" />
@@ -100,7 +100,7 @@
                                    Grid.Row="0"
                                    HorizontalAlignment="Center"
                                    Padding="20,0,0,0"/>
-                                    <TextBlock Text="{x:Bind DateOfBirth, Converter={StaticResource DateToStringConverter}}"
+                                <TextBlock Text="{x:Bind DateOfBirth, Converter={StaticResource DateToStringConverter}}"
                                    Foreground="#444444"
                                    FontSize="13"
                                    Grid.Column="2"
@@ -108,14 +108,14 @@
                                    Grid.Row="2"
                                      HorizontalAlignment="Center"
                                    Padding="20,0,0,20"/>
-                                    <TextBlock Text="Experience:"
+                                <TextBlock Text="Crew Id:"
                                    Foreground="#888888"
                                    FontSize="13"
                                    Grid.Column="3"
                                   HorizontalAlignment="Center"
                                    Grid.Row="0"
                                    Padding="20,0,0,0"/>
-                                    <TextBlock Text="{x:Bind Experience}"
+                                <TextBlock Text="{x:Bind CrewId}"
                                    Foreground="#444444"
                                    FontSize="13"
                                     HorizontalAlignment="Center"
@@ -129,11 +129,11 @@
             </Grid>
 
             <StackPanel Grid.Column="1" Visibility="Collapsed" x:Name="Form" HorizontalAlignment="Center">
-                <TextBlock Text="New Pilot" x:Name="FormTitle" Margin="0 20 0 0" FontSize="25"/>
+                <TextBlock Text="New Stewardess" x:Name="FormTitle" Margin="0 20 0 0" FontSize="25"/>
                 <TextBox x:Name="firstName" Header= "First Name:" Margin="0,20,0,0" MaxLength="50" FontSize="18" HorizontalAlignment="Left" Width="300"/>
                 <TextBox x:Name="lastName" Header="Last Name:" Margin="0,20,0,0" MaxLength="50" FontSize="18" HorizontalAlignment="Left" Width="300" />
                 <DatePicker x:Name="birthDatePicker" Header="Date of Birth:" HorizontalAlignment="Left" Margin="0 20 0 0" FontSize="18"/>
-                <TextBox InputScope="Number" x:Name="experience" Header="Experience" Margin="0,24,0,0"  HorizontalAlignment="Left" FontSize="18" Width="100" />
+                <TextBox InputScope="Number" x:Name="crewId" Header="Crew Id" Margin="0,24,0,0" HorizontalAlignment="Left" FontSize="18" Width="100" />
                 <TextBlock Text="Wrong input" Foreground="Red" x:Name="WrongInput" Visibility="Collapsed" Margin="0 20 0 0"/>
                 <StackPanel Orientation="Horizontal">
 
