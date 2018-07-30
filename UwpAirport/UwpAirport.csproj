@@ -100,6 +100,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Crew.cs" />
+    <Compile Include="Models\CrewDTO.cs" />
     <Compile Include="Models\Departure.cs" />
     <Compile Include="Models\Flight.cs" />
     <Compile Include="Models\Pilot.cs" />
@@ -118,8 +119,12 @@
     <Compile Include="Services\StewardessService.cs" />
     <Compile Include="Services\TicketService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CrewViewModel.cs" />
     <Compile Include="ViewModels\PilotViewModel.cs" />
     <Compile Include="ViewModels\StewardessViewModel.cs" />
+    <Compile Include="Views\CrewListView.xaml.cs">
+      <DependentUpon>CrewListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PilotListView.xaml.cs">
       <DependentUpon>PilotListView.xaml</DependentUpon>
     </Compile>
@@ -151,6 +156,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CrewListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PilotListView.xaml">
       <SubType>Designer</SubType>

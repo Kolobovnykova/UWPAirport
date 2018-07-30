@@ -30,7 +30,7 @@
 
             <Button Content="Pilots" Click="Pilots_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Background="AliceBlue"/>
             <Button Content="Stewardesses" Click="Stewardesses_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Background="AliceBlue" MinWidth="108"/>
-            <Button Content="Crews" Click="Stewardesses_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Background="AliceBlue"/>
+            <Button Content="Crews" Click="Crews_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Background="AliceBlue"/>
             <Button Content="Planes" Click="Planes_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="3" Background="AliceBlue"/>
             <Button Content="PlaneTypes" Click="PlaneTypes_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4" Background="AliceBlue"/>
             <Button Content="Flights" Click="Flight_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="5" Background="AliceBlue"/>

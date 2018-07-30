@@ -24,7 +24,7 @@
 
             <Button Content = "Pilots" Click = "Pilots_Click" Width="160" FontSize="20" Padding="15" Background="AliceBlue" BorderBrush="LightBlue"/>
             <Button Content = "Stewardesses" Margin="0 20 0 0" Click = "Stewardesses_Click" Width="160" FontSize="20" Padding="15" Background="AliceBlue" BorderBrush="LightBlue"/>
-            <Button Content = "Crews" Margin="0 20 0 0" Click = "Stewardesses_Click" Width="160" FontSize="20" Padding="15" Background="AliceBlue" BorderBrush="LightBlue"/>
+            <Button Content = "Crews" Margin="0 20 0 0" Click = "Crews_Click" Width="160" FontSize="20" Padding="15" Background="AliceBlue" BorderBrush="LightBlue"/>
             <Button Content = "Tickets" Margin="0 20 0 0" Click = "Stewardesses_Click" Width="160" FontSize="20" Padding="15" Background="AliceBlue" BorderBrush="LightBlue"/>
 
         </StackPanel>

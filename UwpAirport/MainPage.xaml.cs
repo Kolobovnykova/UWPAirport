@@ -25,5 +25,10 @@ namespace UwpAirport
         {
             this.Frame.Navigate(typeof(StewardessListView));
         }
+
+        private void Crews_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(CrewListView));
+        }
     }
 }

@@ -49,7 +49,7 @@ namespace UwpAirport.Views
                     DateOfBirth = birthDatePicker.Date.Date,
                     Experience = n
                 };
-                if (ViewModel.Valid(pilot))
+                if (ViewModel.IsValid(pilot))
                 {
                     if ((string) Save.Content == "Create")
                     {
@@ -135,6 +135,11 @@ namespace UwpAirport.Views
         private void Tickets_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(PilotListView));
+        }
+
+        private void Crews_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CrewListView));
         }
     }
 }
