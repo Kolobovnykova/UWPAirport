@@ -1,4 +1,4 @@
-# UWPAirport
+# Uwp Airport
 UWP application for work with AirportApi
 
 Works with https://github.com/Kolobovnykova/AirportApi <br />
